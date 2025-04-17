@@ -9,8 +9,19 @@ var
 
 { Ejercicio 3 }
 procedure mostrar_pila_en_orden(var p: tPilaChars);
+var
+  a: tBinarySearchTree;
+  p_aux: tPilaChars;
 begin
-  writeln('No implementado');
+  uBinaryCharSearchTree.initialize(a);
+  uPilaChar.initialize(p_aux);
+  while not isEmpty(p) do   begin
+        push(p_aux, peek(p));
+        add(a, peek(p));
+        pop(p);
+  end;
+  p := p_aux;
+  inorder(a);
 end;
 
 
