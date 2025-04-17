@@ -93,4 +93,5 @@ begin
   // Test para el ejercicio 2.3
   test_add_tree(a, b);
 
+  ReadLn;
 end.

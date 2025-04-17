@@ -187,19 +187,38 @@ begin
 end;
 
   // Ejercicio 2.1
+  function node_count(a:tBinarySearchTree): integer;
+  begin
+    if a <> NIL then
+         node_count := 1 + node_count(a^.hi) + node_count(a^.hd)
+    else
+        node_count := 0;
+  end;
+
   function mismos_nodos_izq_y_der(a: tBinarySearchTree): boolean;
   begin
-  writeln('No implementado')
+    if a <> nil then
+       mismos_nodos_izq_y_der := node_count(a^.hi) = node_count(a^.hd);
   end;
   // Ejercicio 2.2
   function niveles_completos(a: tBinarySearchTree): boolean;
   begin
-  writeln('No implementado')
+    if(a^.hi = nil) and (a^.hd = nil) then
+           niveles_completos := True
+    else if(a^.hi = nil) or (a^.hd = nil) then
+           niveles_completos := False
+    else
+           niveles_completos := niveles_completos(a^.hi) and niveles_completos(a^.hd);
   end;
   // Ejercicio 2.3
   procedure add_tree(var a: tBinarySearchTree; b: tBinarySearchTree);
   begin
-  writeln('No implementado')
+    if (b <> NIL) then
+    begin
+      add(a, b^.info);
+      add_tree(a, b^.hi);
+      add_tree(a, b^.hd);
+    end;
   end;
   // Ejercicio 2.4
   function get_multiplicidad(a: tBinarySearchTree; clave: integer): integer;
