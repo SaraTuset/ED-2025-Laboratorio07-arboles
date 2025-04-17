@@ -7,6 +7,7 @@ type
   tnode = record
     info: integer;
     hi, hd: tBinarySearchTree;
+    multiplicidad: integer;
   end;
 
   // Basic methods
@@ -69,11 +70,14 @@ begin
     a^.info := clave;
     a^.hi := NIL;
     a^.hd := NIL;
+    a^.multiplicidad:=1;
   end
   else if a^.info < clave then
     add(a^.hd, clave)
   else if a^.info > clave then
-    add(a^.hi, clave);
+    add(a^.hi, clave)
+  else
+    a^.multiplicidad += 1;
 end;
 
 procedure remove(var a: tBinarySearchTree; x: integer);
@@ -85,6 +89,8 @@ begin
       remove(a^.hd, x)
     else if a^.info > x then
       remove(a^.hi, x)
+    else if a^.multiplicidad > 1 then
+      a^.multiplicidad -= 1
     else
     begin
       aux := a;
@@ -223,7 +229,12 @@ end;
   // Ejercicio 2.4
   function get_multiplicidad(a: tBinarySearchTree; clave: integer): integer;
   begin
-  writeln('No implementado')
+    if a = nil then
+         get_multiplicidad := 0
+    else if a^.info = clave then
+         get_multiplicidad := a^.multiplicidad
+    else
+        get_multiplicidad := max(get_multiplicidad(a^.hd, clave), get_multiplicidad(a^.hi, clave));
   end;
 
 
