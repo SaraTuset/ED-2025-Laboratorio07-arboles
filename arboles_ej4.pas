@@ -86,4 +86,5 @@ begin
         writeln('El árbol no está vacío.');
 
     writeln('Programa finalizado.');
+    ReadLn;
 end.
